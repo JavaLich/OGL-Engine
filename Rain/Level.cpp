@@ -25,7 +25,6 @@ Level::Level()
 	dirLight.direction = glm::vec3(-0.2f, -1.0f, -0.3f);
 	dirLight.diffuse = glm::vec3(0.3f);
 	dirLight.specular = glm::vec3(0.3f);
-
 }
 
 
