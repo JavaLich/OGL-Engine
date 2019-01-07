@@ -5,7 +5,7 @@
 Level::Level()
 {
 	
-	StaticPhysicsEntity* room = new StaticPhysicsEntity(CUBE, glm::vec3(0.0f), glm::vec3(100.0f, 10.0f, 100.0f));
+	StaticPhysicsEntity* room = new StaticPhysicsEntity(CUBE, glm::vec3(0.0f), glm::vec3(1000.0f, 10.0f, 1000.0f));
 	//Entity* suit = new Entity(2);
 	Entity* tree = new Entity(BIRCH_TREE);
 	tree->ticks = false;

@@ -5,7 +5,7 @@
 Player::Player(View *v) : Entity::Entity(0)
 {
 	position = glm::vec3(0.0f, 300.0f, 0.0f);
-	physics = new PhysicsComponent(position, velocity, glm::vec3(1, 10, 1));
+	physics = new PhysicsComponent(position, velocity, glm::vec3(1, 25, 1));
 	view = v;
 	speed = 2.0f;
 }
@@ -30,7 +30,7 @@ void Player::update(double delta, GLFWwindow *window, Level* level)
 		physics->position.y -= speed*delta;
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 		physics->position.y += speed*delta;*/
-	if (velocity.y>-10)velocity.y -= .1 * speed * (float) delta;
+	if (velocity.y>-50)velocity.y -= .1 * speed * (float) delta;
 
 
 	physics->position.x += velocity.x;
@@ -40,10 +40,10 @@ void Player::update(double delta, GLFWwindow *window, Level* level)
 	velocity.z = 0;
 
 	if (physics->intersects(level->entities_map[CUBE][0]->physics->position, level->entities_map[CUBE][0]->physics->length)) {
-		physics->position.y = level->entities_map[CUBE][0]->physics->position.y + level->entities_map[CUBE][0]->physics->length.y;
+		physics->position.y = level->entities_map[CUBE][0]->physics->position.y + level->entities_map[CUBE][0]->physics->length.y/2 + physics->length.y/2;
 		velocity.y = 0;
 		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-			velocity.y = 10.0f;
+			velocity.y = 5.0f;
 	}
 	
 	position = physics->position;
