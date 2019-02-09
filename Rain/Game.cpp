@@ -35,7 +35,7 @@ Game::Game()
 	glDepthFunc(GL_LESS);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_FRONT);
-	glFrontFace(GL_CW);
+	glFrontFace(GL_CCW);
 	glClearColor(0.2f, 0.8f, 1.0f, 1.0f);
 	const GLubyte *renderer = glGetString(GL_RENDERER);
 	const GLubyte *version = glGetString(GL_VERSION);

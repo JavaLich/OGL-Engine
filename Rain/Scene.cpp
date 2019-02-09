@@ -31,8 +31,8 @@ void Scene::init()
 	pLights.push_back(glm::vec3(-4.0f, 2.0f, -12.0f));
 	pLights.push_back(glm::vec3(0.0f, 0.0f, -3.0f));
 	
-	Model *birchTree = new Model("assets/models/Tree.fbm/Tree.obj");
-	Model *room = new Model("assets/models/crate/Crate1.obj");
+	Model *birchTree = new Model("assets/models/enemy/enemy.dae");
+	Model *room = new Model("assets/models/crate/Crate1.dae");
 	Model *nanosuit = new Model("assets/models/nanosuit/nanosuit.obj");
 	models.push_back(*birchTree);// MESH ID : 0
 	models.push_back(*room);

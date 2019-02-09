@@ -19,12 +19,9 @@ public:
 	Entity(int meshID);
 	~Entity();
 	virtual void update(double delta);
-	void attachComponent(Component comp);
 	glm::mat4 transform;
 	uint32_t meshID;
-	bool ticks = true;
-	std::vector<Component> components;
-	void setTransform(glm::vec3 pos, glm::vec3 rot, glm::vec3 scale);
+	bool ticks = true;	void setTransform(glm::vec3 pos, glm::vec3 rot, glm::vec3 scale);
 	PhysicsComponent* physics;
 
 };

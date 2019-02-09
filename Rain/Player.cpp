@@ -51,7 +51,3 @@ void Player::update(double delta, GLFWwindow *window, Level* level)
 	view->setPosition(position);
 }
 
-void Player::attachComponent(Component comp)
-{
-	Entity::attachComponent(comp);
-}

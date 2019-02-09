@@ -12,14 +12,12 @@ public:
 	Player(View *v);
 	~Player();
 	void update(double delta, GLFWwindow *window, Level* level);
-	void attachComponent(Component comp);
 	glm::mat4 transform;
 	glm::vec3 velocity;
 	glm::vec3 position;
 	float speed = 0.0f;
 	uint32_t meshID;
 	bool ticks = true;
-	std::vector<Component> components;
 	View* view;
 	
 };

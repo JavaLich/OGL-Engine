@@ -7,16 +7,17 @@ Level::Level()
 	
 	StaticPhysicsEntity* room = new StaticPhysicsEntity(CUBE, glm::vec3(0.0f), glm::vec3(1000.0f, 10.0f, 1000.0f));
 	//Entity* suit = new Entity(2);
-	Entity* tree = new Entity(BIRCH_TREE);
-	tree->ticks = false;
-	room->ticks = false;
-	//suit->ticks = false;
 	pLights.push_back(glm::vec3(0.7f, 10.0f, 2.0f));
 	pLights.at(0).ambient = glm::vec3(0.05f, 0.05f, 0.05f);
 	pLights.at(0).diffuse = glm::vec3(.8f, .8f, .8f);
 	pLights.at(0).specular = glm::vec3(1.0f, 1.0f, 1.0f);
 	pLights[0].position.y = 50.0f;
-	tree->setTransform(pLights[0].position, glm::vec3(0), glm::vec3(1.0f));
+	StaticPhysicsEntity* tree = new StaticPhysicsEntity(BIRCH_TREE, pLights[0].position, glm::vec3(10, 10, 20));
+	tree->ticks = false;
+	room->ticks = false;
+	//suit->ticks = false;
+	
+	//tree->setTransform(pLights[0].position, glm::vec3(0), glm::vec3(1.0f));
 	//suit->setTransform(glm::vec3(0, 5, 0), glm::vec3(0), glm::vec3(1.0f));
 	processEntity(room);
 	processEntity(tree);

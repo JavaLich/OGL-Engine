@@ -11,7 +11,6 @@ StaticPhysicsEntity::StaticPhysicsEntity(int meshID, glm::vec3 p, glm::vec3 l) :
 }
 
 void StaticPhysicsEntity::update(double delta) {
-	std::cout << "why" << std::endl;
 }
 
 void StaticPhysicsEntity::setTransform(glm::vec3 p, glm::vec3 r, glm::vec3 s)
@@ -22,5 +21,4 @@ void StaticPhysicsEntity::setTransform(glm::vec3 p, glm::vec3 r, glm::vec3 s)
 
 StaticPhysicsEntity::~StaticPhysicsEntity()
 {
-	std::cout << "romm deleted" << std::endl;
 }
