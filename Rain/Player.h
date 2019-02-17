@@ -1,7 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "View.h"
-#include "PhysicsComponent.h"
+#include "Physics.h"
 #include "Level.h"
 #include "InputComponent.h"
 

@@ -5,7 +5,7 @@
 Player::Player(View *v) : Entity::Entity(0)
 {
 	position = glm::vec3(0.0f, 300.0f, 0.0f);
-	physics = new PhysicsComponent(position, velocity, glm::vec3(1, 25, 1));
+	physics = new Physics(position, velocity, glm::vec3(1, 25, 1));
 	input = new InputComponent();
 	view = v;
 	speed = 2.0f;

@@ -7,7 +7,7 @@ Entity::Entity(int meshID)
 	this->meshID = meshID;
 	
 	transform = glm::mat4(1.0f);
-	physics = new PhysicsComponent();
+	physics = new Physics();
 }
 
 
