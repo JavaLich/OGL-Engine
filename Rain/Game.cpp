@@ -2,6 +2,7 @@
 
 int Game::width = 800;
 int Game::height = 600;
+
 void error_callback(int error, const char* description)
 {
 	fprintf(stderr, "Error: %s\n", description);
@@ -130,7 +131,7 @@ int state = GLFW_RELEASE;
 
 void Game::update(double delta)
 {
-	player->update(delta, window, &renderer.world->levels[renderer.world->activeLevel]);
+	player->update(delta,window, &renderer.world->levels[renderer.world->activeLevel]);
 	scene->updateCamera(delta, window);
 	scene->updateEntities(delta);
 	renderer.world->levels[renderer.world->activeLevel].updateEntities(delta);
