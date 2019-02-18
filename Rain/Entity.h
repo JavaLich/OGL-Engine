@@ -20,10 +20,10 @@ public:
 	glm::mat4 transform;
 	glm::vec3 velocity;
 	glm::vec3 position;
+	float speed = 2.0f;
 	uint32_t meshID;
 	bool ticks = true;
 	void setTransform(glm::vec3 pos, glm::vec3 rot, glm::vec3 scale);
 	Physics* physics;
-
 };
 

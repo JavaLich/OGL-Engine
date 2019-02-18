@@ -1,20 +1,19 @@
-#include "PhysicsComponent.h"
+#include "PlayerPhysicsComponent.h"
 
 
 
-PhysicsComponent::PhysicsComponent()
+PlayerPhysicsComponent::PlayerPhysicsComponent()
 {
 }
 
 
-PhysicsComponent::~PhysicsComponent()
+PlayerPhysicsComponent::~PlayerPhysicsComponent()
 {
 }
 
-void PhysicsComponent::update(Entity & entity,Level *level, double delta)
+void PlayerPhysicsComponent::update(Entity & entity, Level * level, double delta)
 {
-	std::cout << "Entity" << std::endl;
-
+	Player &player =(Player&) entity;
 	if (entity.velocity.y>-50)entity.velocity.y -= .1 * entity.speed * (float)delta;
 	entity.physics->position.x += entity.velocity.x;
 	entity.physics->position.y += entity.velocity.y;
@@ -23,6 +22,8 @@ void PhysicsComponent::update(Entity & entity,Level *level, double delta)
 	if (entity.physics->intersects(level->entities_map[CUBE][0]->physics->position, level->entities_map[CUBE][0]->physics->length)) {
 		entity.physics->position.y = level->entities_map[CUBE][0]->physics->position.y + level->entities_map[CUBE][0]->physics->length.y / 2 + entity.physics->length.y / 2;
 		entity.velocity.y = 0;
+		if (player.wantsToJump)
+			entity.velocity.y = 5.0f;
 	}
 
 	entity.position = entity.physics->position;

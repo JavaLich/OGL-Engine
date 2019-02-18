@@ -7,6 +7,7 @@ Entity::Entity(int meshID)
 	this->meshID = meshID;
 	
 	transform = glm::mat4(1.0f);
+	velocity = glm::vec3(0.0f);
 	physics = new Physics();
 }
 

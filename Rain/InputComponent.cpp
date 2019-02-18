@@ -30,6 +30,6 @@ void InputComponent::update(Player &entity, GLFWwindow* window, double delta)
 	physics->position.y -= speed*delta;
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 	physics->position.y += speed*delta;*/
-	if (entity.velocity.y>-50)entity.velocity.y -= .1 * entity.speed * (float)delta;
+	
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)entity.wantsToJump = true;
 }

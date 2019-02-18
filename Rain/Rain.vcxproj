@@ -162,6 +162,7 @@
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerPhysicsComponent.cpp" />
     <ClCompile Include="PointLight.cpp" />
     <ClCompile Include="EntityRenderer.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerPhysicsComponent.h" />
     <ClInclude Include="PointLight.h" />
     <ClInclude Include="EntityRenderer.h" />
     <ClInclude Include="Scene.h" />
