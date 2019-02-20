@@ -5,25 +5,26 @@
 #include <gtc/matrix_transform.hpp>
 
 #include "Helper.h"
-#include "Physics.h"
 #include "Model.h"
-
 
 #include <iostream>
 #include <vector>
+class PhysicsComponent;
+class Level;
 class Entity
 {
 public:
-	Entity(int meshID);
+	Entity(int meshID, PhysicsComponent* physicsComponent);
 	~Entity();
-	virtual void update(double delta);
+	virtual void update(Level &level, double delta);
 	glm::mat4 transform;
 	glm::vec3 velocity;
 	glm::vec3 position;
 	float speed = 2.0f;
 	uint32_t meshID;
 	bool ticks = true;
+	bool gravity = true;
 	void setTransform(glm::vec3 pos, glm::vec3 rot, glm::vec3 scale);
-	Physics* physics;
+	PhysicsComponent* physics_;
 };
 

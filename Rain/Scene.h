@@ -52,7 +52,8 @@ static const uint32_t CHECKER = 0;
 static const uint32_t WHITE = 1;
 
 extern std::vector<Model> models;
-
+class Level;
+class Entity;
 class Scene
 {
 public:
@@ -62,7 +63,7 @@ public:
 	void processEntity(Entity* entity);
 	void processTerrain(Terrain terrain);
 	void processWaterTile(WaterTile waterTile);
-	void updateEntities(double delta);
+	void updateEntities(Level*level, double delta);
 	void clearEntities();
 	void updateCamera(double delta, GLFWwindow* window);
 	void loadPointLight(PointLight pLight, uint16_t index);

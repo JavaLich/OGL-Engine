@@ -1,6 +1,5 @@
 #pragma once
 #include "glm.hpp"
-#include "Entity.h"
 #include "Scene.h"
 #include "StaticPhysicsEntity.h"
 #include <vector>
@@ -12,7 +11,8 @@ struct DirLight {
 	glm::vec3 diffuse;
 	glm::vec3 specular;
 };
-
+class PointLight;
+class Entity;
 class Level
 {
 public:
@@ -21,9 +21,9 @@ public:
 	void processEntity(Entity* entity);
 	void updateEntities(double delta);
 	void clearEntities();
-	std::map<int, std::vector<Entity*>> entities_map;
 	std::vector<PointLight> pLights;
 	DirLight dirLight;
+	std::map<int, std::vector<Entity*>> entities_map;
 
 };
 

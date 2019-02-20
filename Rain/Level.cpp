@@ -1,20 +1,24 @@
 #include "Level.h"
-
+#include "PhysicsComponent.h"
 
 
 Level::Level()
 {
 	
-	StaticPhysicsEntity* room = new StaticPhysicsEntity(CUBE, glm::vec3(0.0f), glm::vec3(1000.0f, 10.0f, 1000.0f));
+	Entity* room = new Entity(CUBE, new PhysicsComponent(glm::vec3(1000.0f, 10.0f, 1000.0f)));
+	room->position.y = -100.0f;
+	room->gravity = false;
 	//Entity* suit = new Entity(2);
 	pLights.push_back(glm::vec3(0.7f, 10.0f, 2.0f));
 	pLights.at(0).ambient = glm::vec3(0.05f, 0.05f, 0.05f);
 	pLights.at(0).diffuse = glm::vec3(.8f, .8f, .8f);
 	pLights.at(0).specular = glm::vec3(1.0f, 1.0f, 1.0f);
 	pLights[0].position.y = 50.0f;
-	StaticPhysicsEntity* tree = new StaticPhysicsEntity(BIRCH_TREE, pLights[0].position, glm::vec3(10, 10, 20));
-	tree->ticks = false;
-	room->ticks = false;
+	Entity* tree = new Entity(BIRCH_TREE, new PhysicsComponent(glm::vec3(10, 10, 20)));
+	tree->gravity = true;
+	tree->position= pLights[0].position;
+	tree->ticks = true;
+	room->ticks = true;
 	//suit->ticks = false;
 	
 	//tree->setTransform(pLights[0].position, glm::vec3(0), glm::vec3(1.0f));
@@ -51,7 +55,7 @@ void Level::updateEntities(double delta)
 {
 	for (std::map<int, std::vector<Entity*>>::iterator it = entities_map.begin(); it != entities_map.end(); ++it) {
 		for (int i = 0; i < it->second.size(); i++) {
-			if (it->second.at(i)->ticks) it->second.at(i)->update(delta);
+			if (it->second.at(i)->ticks) it->second.at(i)->update(*this, delta);
 		}
 	}
 

@@ -132,8 +132,9 @@ int state = GLFW_RELEASE;
 void Game::update(double delta)
 {
 	player->update(delta,window, &renderer.world->levels[renderer.world->activeLevel]);
+	scene->view.setPosition(player->position);
 	scene->updateCamera(delta, window);
-	scene->updateEntities(delta);
+	scene->updateEntities(&renderer.world->levels[renderer.world->activeLevel], delta);
 	renderer.world->levels[renderer.world->activeLevel].updateEntities(delta);
 	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS && state!=GLFW_PRESS) {
 		renderer.world->activeLevel = (renderer.world->activeLevel == 0) ? 1 : 0;

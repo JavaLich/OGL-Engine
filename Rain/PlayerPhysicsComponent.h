@@ -7,7 +7,10 @@ class PlayerPhysicsComponent :
 {
 public:
 	PlayerPhysicsComponent();
+	PlayerPhysicsComponent(glm::vec3 l) : PhysicsComponent(l) {
+
+	}
 	~PlayerPhysicsComponent();
-	virtual void update(Entity &player, Level* level, double delta);
+	void update(Entity &entity, Level& level, double delta) override;
 };
 

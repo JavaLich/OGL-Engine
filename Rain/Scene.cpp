@@ -62,11 +62,11 @@ void Scene::processWaterTile(WaterTile waterTile)
 	waterTiles.push_back(waterTile);
 }
 
-void Scene::updateEntities(double delta)
+void Scene::updateEntities(Level* level, double delta)
 {
 	for (std::map<int, std::vector<Entity*>>::iterator it = entities_map.begin(); it != entities_map.end(); ++it) {
 		for (int i = 0; i < it->second.size(); i++) {
-			if(it->second.at(i)->ticks) it->second.at(i)->update(delta);
+			if(it->second.at(i)->ticks) it->second.at(i)->update(*level, delta);
 		}
 	}
 }
