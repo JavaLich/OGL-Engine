@@ -101,12 +101,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Akash\Desktop\Akash\C++\Workspace\OGL\Libraries\tiny_obj_loader;C:\Users\Akash\Desktop\Akash\C++\Workspace\OGL\Libraries\assimp\include;C:\Users\Akash\Desktop\Akash\C++\Workspace\OGL\Libraries\stb_image;C:\Users\Akash\Desktop\Akash\C++\Workspace\OGL\Libraries\glm\glm;C:\Users\Akash\Desktop\Akash\C++\Workspace\OGL\Libraries\glew\include;C:\Users\Akash\Desktop\Akash\C++\Workspace\OGL\Libraries\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\tiny_obj_loader;$(SolutionDir)Libraries\assimp\include;$(SolutionDir)Libraries\stb_image;$(SolutionDir)Libraries\glm\glm;$(SolutionDir)Libraries\glew\include;$(SolutionDir)Libraries\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Akash\Desktop\Akash\C++\Workspace\OGL\Libraries\assimp\lib;C:\Users\Akash\Desktop\Akash\C++\Workspace\OGL\Libraries\glew\lib\Release\x64;C:\Users\Akash\Desktop\Akash\C++\Workspace\OGL\Libraries\glfw\lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\assimp\lib;$(SolutionDir)Libraries\glfw\lib-vc2015;$(SolutionDir)Libraries\glew\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>

@@ -1,0 +1,6 @@
+# CMake generation dependency list for this directory.
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/code/CMakeLists.txt
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/cmake-modules/FindRT.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake

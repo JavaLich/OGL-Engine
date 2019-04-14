@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Akash\Desktop\Akash\C++\Workspace\OGL\Libraries\assimp\CMakeFiles\7c85650859e44710088d17ed47442107\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{BAB5BC85-63A0-382E-A0F0-2F46BB31E888}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

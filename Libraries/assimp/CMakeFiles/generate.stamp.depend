@@ -1,0 +1,60 @@
+# CMake generation dependency list for this directory.
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/CMakeLists.txt
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp/CMakeFiles/3.6.0-rc1/CMakeSystem.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeSystemSpecificInitialize.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp/CMakeFiles/3.6.0-rc1/CMakeCCompiler.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp/CMakeFiles/3.6.0-rc1/CMakeCXXCompiler.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeGenericSystem.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/WindowsPaths.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC-C.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp/CMakeFiles/3.6.0-rc1/CMakeRCCompiler.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeRCInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCXXInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeLanguageInformation.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Compiler/MSVC-CXX.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC-CXX.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindOpenMP.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/revision.h.in
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/include/assimp/config.h.in
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/cmake-modules/FindPkgMacros.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/cmake-modules/PrecompiledHeader.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/cmake-modules/cmake_uninstall.cmake.in
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/assimp-config.cmake.in
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/assimp-config-version.cmake.in
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/cmake-modules/FindDirectX.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/cmake-modules/FindPkgMacros.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/cmake-modules/FindZLIB.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/cmake-modules/FindPkgMacros.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPkgConfig.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckTypeSize.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFileCXX.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckFunctionExists.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPkgConfig.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/cmake-modules/FindDevIL.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindOpenGL.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/FindPackageMessage.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CMakeParseArguments.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/assimp.pc.in

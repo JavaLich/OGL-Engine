@@ -1,0 +1,10 @@
+# CMake generation dependency list for this directory.
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/contrib/zlib/CMakeLists.txt
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckTypeSize.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFileCXX.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckFunctionExists.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckIncludeFile.cmake
+C:/Program Files/CMake/share/cmake-3.6/Modules/CheckCSourceCompiles.cmake
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/contrib/zlib/zlib.pc.cmakein
+C:/Users/Akash/Desktop/Akash/C++/Workspace/OGL/Libraries/assimp-4.0.1/contrib/zlib/zconf.h.cmakein
