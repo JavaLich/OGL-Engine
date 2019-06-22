@@ -29,6 +29,8 @@ private:
 	std::vector<Texture> loadedTextures;
 	std::string directory;
 	void loadModel(char* path);
+	void loadModel(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
+	void loadModel(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures);
 	void processNode(aiNode *node, const aiScene *scene);
 	Mesh processMesh(aiMesh *mesh, const aiScene* scene);
 	std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);

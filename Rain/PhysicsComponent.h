@@ -1,9 +1,14 @@
 #pragma once
+#ifndef PHYSICSCOMPONENT_H
+#define PHYSICSCOMPONENT_H
+
 #include "GL\glew.h"
 #include "GLFW\glfw3.h"
 #include "Level.h"
 #include "Entity.h"
 #include "Physics.h"
+
+
 class Entity;
 class Level;
 class PhysicsComponent
@@ -17,3 +22,4 @@ public:
 	glm::vec3 volume;
 };
 
+#endif

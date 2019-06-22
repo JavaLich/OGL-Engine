@@ -6,6 +6,8 @@
 #include <gtx\hash.hpp>
 #include <gtc/matrix_transform.hpp>
 
+#include "Helper.h"
+
 static const float near = 0.1f;
 static const float far = 1000.0f;
 
@@ -30,9 +32,9 @@ private:
 	glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
 	glm::vec3 right = glm::vec3(0.0f);
 	float horizontalAngle = 3.14f;
-	float verticalAngle = 0.0f;
+	float verticalAngle = -3.14f;
 	float initialFoV = 45.0f;
-	float speed = 1.0f;
+	float speed = .6f;
 	float mouseSpeed = 0.005f;
 	glm::mat4 proj = glm::mat4(1.0f);
 	glm::mat4 view = glm::mat4(1.0f);

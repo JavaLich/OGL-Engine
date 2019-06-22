@@ -7,7 +7,6 @@
 
 
 #include "Shader.h"
-
 #include <string>
 #include <vector>
 
@@ -22,7 +21,6 @@ struct Texture {
 	std::string type;
 	std::string path;
 };
-
 class Mesh
 {
 public:

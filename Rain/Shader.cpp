@@ -1,34 +1,52 @@
-#include "Shader.h"
+ #include "Shader.h"
 
 
 
-Shader::Shader(const char* vertexPath, const char* fragmentPath)
+Shader::Shader(const char* vertexPath, const char* fragmentPath, const char* tcsPath, const char* tesPath) : vPath(vertexPath),fPath(fragmentPath),csPath(tcsPath),esPath(tesPath)
 {
+
 	std::string vertexCode;
 	std::string fragmentCode;
+	std::string tcsCode;
+	std::string tesCode;
 	std::ifstream vShaderFile;
 	std::ifstream fShaderFile;
+	std::ifstream tcsFile;
+	std::ifstream tesFile;
 	vShaderFile.exceptions(std::fstream::failbit | std::ifstream::badbit);
 	fShaderFile.exceptions(std::fstream::failbit | std::ifstream::badbit);
+	tcsFile.exceptions(std::fstream::failbit | std::ifstream::badbit);
+	tesFile.exceptions(std::fstream::failbit | std::ifstream::badbit);
 
 	try {
 		vShaderFile.open(vertexPath);
 		fShaderFile.open(fragmentPath);
-		std::stringstream vShaderStream, fShaderStream;
+		tcsFile.open(tcsPath);
+		tesFile.open(tesPath);
+		std::stringstream vShaderStream, fShaderStream, tcsStream, tesStream;
 		vShaderStream << vShaderFile.rdbuf();
 		fShaderStream << fShaderFile.rdbuf();
+		tcsStream << tcsFile.rdbuf();
+		tesStream << tesFile.rdbuf();
 		vShaderFile.close();
 		fShaderFile.close();
+		tcsFile.close();
+		tesFile.close();
 		vertexCode = vShaderStream.str();
 		fragmentCode = fShaderStream.str();
+		tesCode = tesStream.str();
+		tcsCode = tcsStream.str();
 	}
 	catch (std::ifstream::failure e) {
-		std::cout << "Couldn't read shader file: " << vertexPath << " and: " << fragmentPath << std::endl;
+		std::cout << "Couldn't read shader file: " << vertexPath << " and: " << fragmentPath << " and: " << tcsPath << " and: " << tesPath<< std::endl;
 	}
 	const char* vShaderCode = vertexCode.c_str();
 	const char* fShaderCode = fragmentCode.c_str();
+	const char* controlCode = tcsCode.c_str();
+	const char* evaluationCode = tesCode.c_str();
+	
 
-	unsigned int vertex, fragment;
+	unsigned int vertex, fragment, control, evaluation;
 	int success;
 	char infoLog[512];
 
@@ -51,9 +69,32 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
 		std::cout << "Fragment shader failed to compile: \n" << infoLog << std::endl;
 	}
+
+	control = glCreateShader(GL_TESS_CONTROL_SHADER);
+	glShaderSource(control, 1, &controlCode, NULL);
+	glCompileShader(control);
+
+	glGetShaderiv(control, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(control, 512, NULL, infoLog);
+		std::cout << "Tesselation control shader failed to compile: \n" << infoLog << std::endl;
+	}
+
+	evaluation = glCreateShader(GL_TESS_EVALUATION_SHADER);
+	glShaderSource(evaluation, 1, &evaluationCode, NULL);
+	glCompileShader(evaluation);
+
+	glGetShaderiv(evaluation, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(evaluation, 512, NULL, infoLog);
+		std::cout << "Tesselation evaluation shader failed to compile: \n" << infoLog << std::endl;
+	}
+
 	shaderID = glCreateProgram();
 	glAttachShader(shaderID, vertex);
 	glAttachShader(shaderID, fragment);
+	glAttachShader(shaderID, control);
+	glAttachShader(shaderID, evaluation);
 	glLinkProgram(shaderID);
 
 	glGetProgramiv(shaderID, GL_LINK_STATUS, &success);
@@ -66,6 +107,121 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 
 	glDeleteShader(vertex);
 	glDeleteShader(fragment);
+	glDeleteShader(control);
+	glDeleteShader(evaluation);
+}
+
+void Shader::reload() {
+	glDeleteShader(shaderID);
+	const char* vertexPath = vPath;
+	const char* fragmentPath = fPath;
+	const char* tcsPath = csPath;
+	const char* tesPath = esPath;
+
+	std::string vertexCode;
+	std::string fragmentCode;
+	std::string tcsCode;
+	std::string tesCode;
+	std::ifstream vShaderFile;
+	std::ifstream fShaderFile;
+	std::ifstream tcsFile;
+	std::ifstream tesFile;
+	vShaderFile.exceptions(std::fstream::failbit | std::ifstream::badbit);
+	fShaderFile.exceptions(std::fstream::failbit | std::ifstream::badbit);
+	tcsFile.exceptions(std::fstream::failbit | std::ifstream::badbit);
+	tesFile.exceptions(std::fstream::failbit | std::ifstream::badbit);
+
+	try {
+		vShaderFile.open(vertexPath);
+		fShaderFile.open(fragmentPath);
+		tcsFile.open(tcsPath);
+		tesFile.open(tesPath);
+		std::stringstream vShaderStream, fShaderStream, tcsStream, tesStream;
+		vShaderStream << vShaderFile.rdbuf();
+		fShaderStream << fShaderFile.rdbuf();
+		tcsStream << tcsFile.rdbuf();
+		tesStream << tesFile.rdbuf();
+		vShaderFile.close();
+		fShaderFile.close();
+		tcsFile.close();
+		tesFile.close();
+		vertexCode = vShaderStream.str();
+		fragmentCode = fShaderStream.str();
+		tesCode = tesStream.str();
+		tcsCode = tcsStream.str();
+	}
+	catch (std::ifstream::failure e) {
+		std::cout << "Couldn't read shader file: " << vertexPath << " and: " << fragmentPath << " and: " << tcsPath << " and: " << tesPath << std::endl;
+	}
+	const char* vShaderCode = vertexCode.c_str();
+	const char* fShaderCode = fragmentCode.c_str();
+	const char* controlCode = tcsCode.c_str();
+	const char* evaluationCode = tesCode.c_str();
+
+
+	unsigned int vertex, fragment, control, evaluation;
+	int success;
+	char infoLog[512];
+
+	vertex = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertex, 1, &vShaderCode, NULL);
+	glCompileShader(vertex);
+
+	glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(vertex, 512, NULL, infoLog);
+		std::cout << "Vertex shader failed to compile: \n" << infoLog << std::endl;
+	}
+
+	fragment = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragment, 1, &fShaderCode, NULL);
+	glCompileShader(fragment);
+
+	glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
+		std::cout << "Fragment shader failed to compile: \n" << infoLog << std::endl;
+	}
+
+	control = glCreateShader(GL_TESS_CONTROL_SHADER);
+	glShaderSource(control, 1, &controlCode, NULL);
+	glCompileShader(control);
+
+	glGetShaderiv(control, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(control, 512, NULL, infoLog);
+		std::cout << "Tesselation control shader failed to compile: \n" << infoLog << std::endl;
+	}
+
+	evaluation = glCreateShader(GL_TESS_EVALUATION_SHADER);
+	glShaderSource(evaluation, 1, &evaluationCode, NULL);
+	glCompileShader(evaluation);
+
+	glGetShaderiv(evaluation, GL_COMPILE_STATUS, &success);
+	if (!success) {
+		glGetShaderInfoLog(evaluation, 512, NULL, infoLog);
+		std::cout << "Tesselation evaluation shader failed to compile: \n" << infoLog << std::endl;
+	}
+
+	shaderID = glCreateProgram();
+	glAttachShader(shaderID, vertex);
+	glAttachShader(shaderID, fragment);
+	glAttachShader(shaderID, control);
+	glAttachShader(shaderID, evaluation);
+	glLinkProgram(shaderID);
+
+	glGetProgramiv(shaderID, GL_LINK_STATUS, &success);
+	if (!success) {
+		glGetProgramInfoLog(shaderID, 512, NULL, infoLog);
+		std::cout << "Failed link shader: \n" << infoLog << std::endl;
+	}
+
+	glValidateProgram(shaderID);
+
+	glDeleteShader(vertex);
+	glDeleteShader(fragment);
+	glDeleteShader(control);
+	glDeleteShader(evaluation);
 }
 
 Shader::~Shader()

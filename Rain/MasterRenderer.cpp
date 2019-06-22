@@ -42,13 +42,11 @@ void MasterRenderer::render(Scene &scene, GLFWwindow *window)
 	*/
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	entityRenderer.render(scene, *world);
+	//entityRenderer.render(scene, *world);
+	starRenderer.render(scene, *world);
 	scene.clearEntities();
 	scene.terrains.clear();
 	scene.waterTiles.clear();
-	
-
 }
 
 void MasterRenderer::init()

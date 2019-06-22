@@ -13,7 +13,6 @@ EntityRenderer::~EntityRenderer()
 
 void EntityRenderer::render(Scene &scene, World &world)
 {
-
 	scene.shaders.at(SHADER).bind();
 	scene.shaders.at(SHADER).setMat4("view", scene.view.getViewMatrix());
 	scene.shaders.at(SHADER).setMat4("proj", scene.view.getProjection());
@@ -39,12 +38,17 @@ void EntityRenderer::render(Scene &scene, World &world)
 		for (Mesh mesh : models[it->first].meshes) {
 			scene.shaders.at(SHADER).setFloat("material.shininess", 32);
 			mesh.setupRender(scene.shaders[SHADER]);
+			if (mesh.textures.size() == 0) {
+				glActiveTexture(GL_TEXTURE0);
+				scene.shaders[SHADER].setInt("material.texture_diffuse1", 0);
+				glBindTexture(GL_TEXTURE_2D, texs.at(0));
+			}
 			glEnableVertexAttribArray(0);
 			glEnableVertexAttribArray(1);
 			glEnableVertexAttribArray(2);
 			for (Entity* entity : it->second) {
 				scene.shaders[SHADER].setMat4("model", entity->transform);
-				glDrawElements(GL_TRIANGLES, (GLsizei)mesh.indices.size(), GL_UNSIGNED_INT, 0);
+				glDrawElements(GL_PATCHES, (GLsizei)mesh.indices.size(), GL_UNSIGNED_INT, 0);
 			}
 			glDisableVertexAttribArray(0);
 			glDisableVertexAttribArray(1);

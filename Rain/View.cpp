@@ -4,7 +4,6 @@
 
 View::View()
 {
-	position.y = 20.0f;
 }
 
 
@@ -68,8 +67,6 @@ void View::update(double delta, GLFWwindow * window)
 		sin(verticalAngle),
 		cos(verticalAngle) * cos(horizontalAngle)
 	);
-	glm::vec3 lookDirection = glm::vec3(direction.x, 0.0f, direction.z);
-
 	view = glm::lookAt(position, position + direction, glm::vec3(0.0f, 1.0f, 0.0f));
 	proj = glm::perspective(glm::radians(45.0f), width / (float)height, near, far);
 }

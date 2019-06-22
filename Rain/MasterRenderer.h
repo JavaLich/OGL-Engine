@@ -4,6 +4,7 @@
 #include "TerrainRenderer.h"
 #include "WaterRenderer.h"
 #include "LevelRenderer.h"
+#include "StarRenderer.h"
 #include "World.h"
 
 
@@ -18,6 +19,7 @@ public:
 	TerrainRenderer terrainRenderer;
 	WaterRenderer waterRenderer;
 	LevelRenderer levelRenderer;
+	StarRenderer starRenderer;
 	World *world;
 	Scene *scene;
 };

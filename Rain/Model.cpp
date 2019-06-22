@@ -14,7 +14,7 @@ Model::~Model()
 void Model::loadModel(char * path)
 {
 	Assimp::Importer importer;
-	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_MakeLeftHanded);
+	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
 
 	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
 		std::cout << "Assimp error: " << importer.GetErrorString() << std::endl;
@@ -24,6 +24,26 @@ void Model::loadModel(char * path)
 	directory = pathString.substr(0, pathString.find_last_of('/'));
 	
 	processNode(scene->mRootNode, scene);
+	length = glm::vec3(max.x - min.x, max.y - min.y, max.z - min.z);
+}
+
+void Model::loadModel(std::vector<Vertex> vertices, std::vector<unsigned int> indices)
+{
+	min.x = vertices[0].position.x;
+	min.y = vertices[0].position.y;
+	min.z = vertices[0].position.z;
+	max.x = vertices[0].position.x;
+	max.y = vertices[0].position.y;
+	max.z = vertices[0].position.z;
+	for (Vertex vertex : vertices) {
+		if (min.x > vertex.position.x)min.x = vertex.position.x;
+		if (max.x < vertex.position.x)max.x = vertex.position.x;
+		if (min.y > vertex.position.y)min.y = vertex.position.y;
+		if (max.y < vertex.position.y)max.y = vertex.position.y;
+		if (min.z > vertex.position.z)min.z = vertex.position.z;
+		if (max.z < vertex.position.z)max.z = vertex.position.z;
+	}
+	meshes.push_back(Mesh(vertices, indices));
 	length = glm::vec3(max.x - min.x, max.y - min.y, max.z - min.z);
 }
 

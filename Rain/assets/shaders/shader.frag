@@ -8,7 +8,6 @@ out vec4 FragColor;
 
 struct DirLight {
 	vec3 direction;
-	
 	vec3 ambient;
 	vec3 diffuse;
 	vec3 specular;
@@ -79,7 +78,7 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 
 void main(){
 	if(hasSpecularTexture)specularColor = vec3(texture(material.texture_specular1, texCoord0));
-	else specularColor = vec3(1.0);
+	else specularColor = vec3(texture(material.texture_diffuse1, texCoord0));
 	vec3 norm = normalize(normal0);
     vec3 viewDir = normalize(cameraPos - fragPos);
 

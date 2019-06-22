@@ -26,10 +26,14 @@ void InputComponent::update(Player &entity, GLFWwindow* window, double delta)
 		entity.velocity -= glm::normalize(glm::cross(entity.view->getDirection(), glm::vec3(0.0f, 1.0f, 0.0f))) * entity.speed*(float)delta;
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		entity.velocity += glm::normalize(glm::cross(entity.view->getDirection(), glm::vec3(0.0f, 1.0f, 0.0f))) * entity.speed*(float)delta;
+	if(glfwGetKey(window,GLFW_KEY_LEFT_SHIFT)==GLFW_PRESS)
+		entity.velocity.y -= 5.0f*delta;
+	
 	/*if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
 	physics->position.y -= speed*delta;
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
 	physics->position.y += speed*delta;*/
 	
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)entity.wantsToJump = true;
+	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE)entity.wantsToJump = false;
 }

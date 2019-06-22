@@ -5,31 +5,36 @@
 Level::Level()
 {
 	
-	Entity* room = new Entity(CUBE, new PhysicsComponent(glm::vec3(1000.0f, 10.0f, 1000.0f)));
+	/*Entity* room = new Entity(CUBE, new PhysicsComponent(glm::vec3(1000.0f, 10.0f, 1000.0f)));
 	room->position.y = -100.0f;
 	room->gravity = false;
 	//Entity* suit = new Entity(2);
-	pLights.push_back(glm::vec3(0.7f, 10.0f, 2.0f));
-	pLights.at(0).ambient = glm::vec3(0.05f, 0.05f, 0.05f);
-	pLights.at(0).diffuse = glm::vec3(.8f, .8f, .8f);
-	pLights.at(0).specular = glm::vec3(1.0f, 1.0f, 1.0f);
-	pLights[0].position.y = 50.0f;
-	Entity* tree = new Entity(BIRCH_TREE, new PhysicsComponent(glm::vec3(10, 10, 20)));
-	tree->gravity = true;
+	
+	Enemy* tree = new Enemy(BIRCH_TREE, new PhysicsComponent(glm::vec3(10, 20, 10)));	
+	collisionBodies.push_back(room);
+	collisionBodies.push_back(tree);
 	tree->position= pLights[0].position;
-	tree->ticks = true;
 	room->ticks = true;
 	//suit->ticks = false;
 	
 	//tree->setTransform(pLights[0].position, glm::vec3(0), glm::vec3(1.0f));
 	//suit->setTransform(glm::vec3(0, 5, 0), glm::vec3(0), glm::vec3(1.0f));
 	processEntity(room);
-	processEntity(tree);
-	//processEntity(suit);
-	dirLight.ambient = glm::vec3(.2f, .2f, .2f);
-	dirLight.direction = glm::vec3(-0.2f, -1.0f, -0.3f);
-	dirLight.diffuse = glm::vec3(0.3f);
-	dirLight.specular = glm::vec3(0.3f);
+	processEntity(tree);*/
+	//processEntity(suit
+	pLights.push_back(glm::vec3(0.7f, 120.0f, -50.0f));
+	pLights.at(0).ambient = glm::vec3(0.0f);
+	pLights.at(0).diffuse = glm::vec3(0.0f, 0.0f, 0.0f);
+	pLights.at(0).specular = glm::vec3(0.0f);
+	Entity* sphere = new Entity(1, new PhysicsComponent(glm::vec3(100.0, 100.0f, 100.0f)));
+	collisionBodies.push_back(sphere);
+	processEntity(sphere);
+	dirLight.ambient = glm::vec3(0.2f);
+	dirLight.direction = glm::vec3(0.2f, -1.0f, 0.3f);
+	dirLight.diffuse = glm::vec3(0.8f);
+	dirLight.specular = glm::vec3(1.0f);
+	celestials.push_back(Celestial(10.0f));
+
 }
 
 

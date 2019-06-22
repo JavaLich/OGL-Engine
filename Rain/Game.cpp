@@ -8,6 +8,12 @@ void error_callback(int error, const char* description)
 	fprintf(stderr, "Error: %s\n", description);
 }
 
+void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods) {
+	if (key == GLFW_KEY_C && action == GLFW_RELEASE) {
+		
+	}
+}
+
 Game::Game()
 {
 	if (!glfwInit()) {
@@ -18,8 +24,10 @@ Game::Game()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_SAMPLES, 4);
 
 	glfwSetErrorCallback(error_callback);
+	
 	window = glfwCreateWindow(Game::width, Game::height, "OpenGL Engine", NULL, NULL);
 	if (!window) {
 		std::cout << "Couldn't create window" << std::endl;
@@ -29,21 +37,27 @@ Game::Game()
 	glfwMakeContextCurrent(window);
 	glfwSwapInterval(0);
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetKeyCallback(window, keyCallback);
 	glewExperimental = GL_TRUE;
 	glewInit();
 
-	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_FRONT);
+	glEnable(GL_DEPTH_TEST);
+	glCullFace(GL_BACK);
 	glFrontFace(GL_CCW);
-	glClearColor(0.2f, 0.8f, 1.0f, 1.0f);
+	glEnable(GL_CULL_FACE);
+	
+	glEnable(GL_MULTISAMPLE);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	GLint maxPatchVerts = 0;
+	glGetIntegerv(GL_MAX_PATCH_VERTICES, &maxPatchVerts);
+	glPatchParameteri(GL_PATCH_VERTICES, 3);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	const GLubyte *renderer = glGetString(GL_RENDERER);
 	const GLubyte *version = glGetString(GL_VERSION);
 
 	printf("Renderer: %s\nVersion: %s\n", renderer, version);
-
-	
+	std::cout << "Max Patch Vertices: " << maxPatchVerts << std::endl;
 	
 	scene = new Scene();
 	scene->init();
@@ -69,8 +83,11 @@ Game::Game()
 	this->renderer.init();
 	
 	player = new Player(&scene->view);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glfwGetWindowSize(window, &width, &height);
+	glfwSetCursorPos(window, width / 2, height / 2);
 }
+
+
 /*
 TODO
 Optimizations
@@ -79,9 +96,6 @@ Inhibiting trees from spawning below water level
 Multitexturing/Terrain coloring
 Water?
 Skybox?
-
-
-
 */
 
 Game::~Game()
@@ -127,22 +141,23 @@ void Game::render()
 	glfwSwapBuffers(window);
 }
 
-int state = GLFW_RELEASE;
+bool reloadedLastFrame = false;
 
 void Game::update(double delta)
 {
+
+	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS &&!reloadedLastFrame) {
+		scene->shaders[1].reload();
+		reloadedLastFrame = true;
+	}
+	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_RELEASE) {
+		reloadedLastFrame = false;
+	}
 	player->update(delta,window, &renderer.world->levels[renderer.world->activeLevel]);
 	scene->view.setPosition(player->position);
 	scene->updateCamera(delta, window);
 	scene->updateEntities(&renderer.world->levels[renderer.world->activeLevel], delta);
 	renderer.world->levels[renderer.world->activeLevel].updateEntities(delta);
-	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS && state!=GLFW_PRESS) {
-		renderer.world->activeLevel = (renderer.world->activeLevel == 0) ? 1 : 0;
-	}
-	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) {
-		renderer.world->levels[renderer.world->activeLevel].pLights[0].position.x += 0.1f;
-	}
-	state = glfwGetKey(window, GLFW_KEY_E);
 }
 
 void Game::process()

@@ -3,6 +3,7 @@
 #include "stb_image.h"
 
 std::vector<Model> models = std::vector<Model>();
+std::vector<GLuint> texs = std::vector<GLuint>();
 
 Scene::Scene()
 {
@@ -16,12 +17,14 @@ Scene::~Scene()
 
 void Scene::init()
 {
-	Shader shader = Shader("assets/shaders/shader.vert", "assets/shaders/shader.frag");
-	Shader terrainShader = Shader("assets/shaders/terrainShader.vert", "assets/shaders/terrainShader.frag");
-	Shader waterShader = Shader("assets/shaders/waterShader.vert", "assets/shaders/waterShader.frag");
+	Shader shader = Shader("assets/shaders/shader.vert", "assets/shaders/shader.frag", "assets/shaders/shader.cs", "assets/shaders/shader.es");
+	Shader sphereShader = Shader("assets/shaders/sphereShader.vert", "assets/shaders/sphereShader.frag", "assets/shaders/sphereShader.cs", "assets/shaders/sphereShader.es");
+	/*Shader terrainShader = Shader("assets/shaders/terrainShader.vert", "assets/shaders/terrainShader.frag");
+	Shader waterShader = Shader("assets/shaders/waterShader.vert", "assets/shaders/waterShader.frag");*/
 	shaders.push_back(shader);
-	shaders.push_back(terrainShader);
-	shaders.push_back(waterShader);
+	shaders.push_back(sphereShader);
+	/*shaders.push_back(terrainShader);
+	shaders.push_back(waterShader);*/
 	
 	pLights.push_back(glm::vec3(0.7f, 0.2f, 2.0f));
 	pLights.at(0).ambient = glm::vec3(0.05f, 0, 0);
@@ -33,10 +36,12 @@ void Scene::init()
 	
 	Model *birchTree = new Model("assets/models/enemy/enemy.dae");
 	Model *room = new Model("assets/models/crate/Crate1.dae");
-	Model *nanosuit = new Model("assets/models/nanosuit/nanosuit.obj");
+	Model* sphere = new Model("assets/models/sphere.obj");
 	models.push_back(*birchTree);// MESH ID : 0
 	models.push_back(*room);
-	models.push_back(*nanosuit);
+	models.push_back(*sphere);
+	texs.push_back(getTextureFromFile("white.png", "assets/textures"));
+	texs.push_back(getTextureFromFile("star_spectrum.png", "assets/textures"));
 }
 
 void Scene::processEntity(Entity* entity)

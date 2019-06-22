@@ -6,7 +6,6 @@
 #include <gtx\hash.hpp>
 
 #include "Shader.h"
-#include "Entity.h"
 #include "PointLight.h"
 #include "Model.h"
 #include "Mesh.h"
@@ -15,12 +14,12 @@
 #include "WaterFrameBuffers.h"
 #include "View.h"
 #include "Helper.h"
-
 #include <iostream>
 #include <vector>
 #include <map>
 #include <unordered_map>
 #include <string>
+#include "Entity.h"
 
 #define NR_POINT_LIGHTS 4;
 struct Camera {
@@ -44,14 +43,17 @@ static const uint32_t CUBE = 1;
 
 //ID for shader
 static const uint16_t SHADER = 0;
-static const uint16_t TERRAIN_SHADER = 1;
+static const uint16_t TERRAIN_SHADER = 3;
 static const uint16_t WATER_SHADER = 2;
+static const uint16_t STAR_SHADER = 1;
 
 //ID for texture
 static const uint32_t CHECKER = 0;
 static const uint32_t WHITE = 1;
 
 extern std::vector<Model> models;
+extern std::vector<GLuint> texs;
+
 class Level;
 class Entity;
 class Scene
@@ -75,6 +77,7 @@ public:
 	std::vector<Terrain> terrains;
 	std::vector<WaterTile> waterTiles;
 	std::map<int, std::vector<Entity*>> entities_map;
+	//std::vector<Celestial> celestials;
 	Camera camera;
 	glm::vec4 clipPlane;
 	WaterFrameBuffers fbos;
