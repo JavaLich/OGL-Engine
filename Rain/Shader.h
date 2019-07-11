@@ -12,6 +12,7 @@ class Shader
 {
 public:
 	Shader(const char* vertexPath, const char* fragmentPath, const char* tcsPath, const char* tesPath);
+	Shader(const char* vertexPath, const char* fragmentPath);
 	~Shader();
 	void bind();
 	void setFloat(const char* name, float value);

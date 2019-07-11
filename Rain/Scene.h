@@ -40,12 +40,14 @@ struct Camera {
 //ID for mesh
 static const uint32_t BIRCH_TREE = 0;
 static const uint32_t CUBE = 1;
+static const uint32_t PLANE = 3;
 
 //ID for shader
 static const uint16_t SHADER = 0;
 static const uint16_t TERRAIN_SHADER = 3;
 static const uint16_t WATER_SHADER = 2;
 static const uint16_t STAR_SHADER = 1;
+static const uint16_t CORONA_SHADER = 2;
 
 //ID for texture
 static const uint32_t CHECKER = 0;

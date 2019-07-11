@@ -22,7 +22,7 @@ public:
 	glm::vec3 position;
 	glm::vec3 rotation;
 	glm::vec3 scale;
-	float speed = 2.0f;
+	float speed = .6f;
 	uint32_t meshID;
 	bool ticks = true;
 	bool gravity = true;

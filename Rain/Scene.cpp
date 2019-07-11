@@ -23,6 +23,7 @@ void Scene::init()
 	Shader waterShader = Shader("assets/shaders/waterShader.vert", "assets/shaders/waterShader.frag");*/
 	shaders.push_back(shader);
 	shaders.push_back(sphereShader);
+	shaders.push_back(Shader("assets/shaders/corona.vert", "assets/shaders/corona.frag"));
 	/*shaders.push_back(terrainShader);
 	shaders.push_back(waterShader);*/
 	
@@ -34,12 +35,14 @@ void Scene::init()
 	pLights.push_back(glm::vec3(-4.0f, 2.0f, -12.0f));
 	pLights.push_back(glm::vec3(0.0f, 0.0f, -3.0f));
 	
-	Model *birchTree = new Model("assets/models/enemy/enemy.dae");
-	Model *room = new Model("assets/models/crate/Crate1.dae");
-	Model* sphere = new Model("assets/models/sphere.obj");
-	models.push_back(*birchTree);// MESH ID : 0
-	models.push_back(*room);
-	models.push_back(*sphere);
+	Model birchTree = Model("assets/models/enemy/enemy.dae");
+	Model room =  Model("assets/models/crate/Crate1.dae");
+	Model sphere =  Model("assets/models/sphere.obj");
+	Model plane =  Model("assets/models/plane.obj");
+	models.push_back(birchTree);// MESH ID : 0
+	models.push_back(room);
+	models.push_back(sphere);
+	models.push_back(plane);
 	texs.push_back(getTextureFromFile("white.png", "assets/textures"));
 	texs.push_back(getTextureFromFile("star_spectrum.png", "assets/textures"));
 }

@@ -9,6 +9,7 @@
 #include "Model.h"
 #include "Mesh.h"
 #include "World.h"
+#include "Helper.h"
 
 class StarRenderer
 {

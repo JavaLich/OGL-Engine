@@ -1,88 +1,5 @@
 #version 450 core
 
-in vec2 texCoord0;
-in vec3 normal0;
-in vec3 fragPos;
-
-out vec4 FragColor;
-
-struct DirLight {
-	vec3 direction;
-	vec3 ambient;
-	vec3 diffuse;
-	vec3 specular;
-};
-uniform DirLight dirLight;
-uniform bool hasSpecularTexture;
-
-struct PointLight {    
-    vec3 position;
-    
-    float constant;
-    float linear;
-    float quadratic;  
-
-    vec3 ambient;
-    vec3 diffuse;
-    vec3 specular;
-};  
-#define NR_POINT_LIGHTS 1 
-uniform PointLight pointLights[NR_POINT_LIGHTS];
-
-struct Material{
-	sampler2D texture_diffuse1;
-	sampler2D texture_specular1;
-	float shininess;
-};
-uniform Material material;
-
-uniform sampler2D starSpectrum;
-
-uniform vec3 cameraPos;
-uniform float time;
-uniform float temperature;
-uniform float realRadius;
-uniform vec3 colorShift;
-uniform float radius;
-
-vec3 specularColor;
-
-vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir){
-	vec3 lightDir = normalize(-light.direction);
-
-    float diff = max(dot(normal, lightDir), 0.0);
-
-    vec3 reflectDir = reflect(-lightDir, normal);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-
-    vec3 ambient  = light.ambient  * vec3(texture(material.texture_diffuse1, texCoord0));
-    vec3 diffuse  = light.diffuse  * diff * vec3(texture(material.texture_diffuse1, texCoord0));
-    vec3 specular = light.specular * spec * specularColor;
-    return (ambient + diffuse + specular);
-}
-
-vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
-{
-    vec3 lightDir = normalize(light.position - fragPos);
-
-    float diff = max(dot(normal, lightDir), 0.0);
-
-    vec3 reflectDir = reflect(-lightDir, normal);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-
-    float distance    = length(light.position - fragPos);
-    float attenuation = 1.0 / (light.constant + light.linear * distance + 
-  			     light.quadratic * (distance * distance));    
-
-    vec3 ambient  = light.ambient  * vec3(texture(material.texture_diffuse1, texCoord0));
-    vec3 diffuse  = light.diffuse  * diff * vec3(texture(material.texture_diffuse1, texCoord0));
-    vec3 specular = light.specular * spec * specularColor;
-    ambient  *= attenuation;
-    diffuse  *= attenuation;
-    specular *= attenuation;
-    return (ambient + diffuse + specular);
-} 
-
 vec4 mod289(vec4 x) {
   return x - floor(x * (1.0 / 289.0)) * 289.0; }
 
@@ -214,22 +131,45 @@ float noise(vec4 position, int octaves,float frq, float persistence){
 	return total/maxValue;
 }
 
+in vec2 texCoord0;
+in vec3 fragPos;
+
+out vec4 FragColor;
+
+struct Material{
+	sampler2D texture_diffuse1;
+	sampler2D texture_specular1;
+	float shininess;
+};
+uniform Material material;
+
+uniform vec3 cameraPos;
+uniform sampler2D starSpectrum;
+uniform float time;
+
 void main(){
-	vec4 position = vec4(fragPos, time);
-	float n = (noise(position, 4, 2,.5)+1.0)*0.5;
-   
-	vec4 sPosition = position * radius;
-	float s= 0.3;
-	float frequency = 0.08;
-	float t1 = snoise(sPosition*frequency)-s;
-	float t2 = snoise((sPosition+radius)*frequency)-s;
-	float ss = (max(t1, 0.0)*max(t2, 0.0))*2.0;
-	
-	float u = (temperature-800.0f)/29200.0f;
-	vec4 starColor = texture2D(starSpectrum, vec2(u, 1.0));
-	float total = n-ss;
-	if(total < 0)total = 0;
-	if(total > 1) total = 1;
-	
-	FragColor = (total * starColor)+vec4(colorShift,1.0);
+    vec3 viewDir = normalize(cameraPos - fragPos);
+
+    vec3 result = vec3(texture(material.texture_diffuse1, texCoord0));
+
+	float t = time - length(fragPos);
+
+	// Offset normal with noise
+	float frequency = 1.5;
+	float ox = snoise(vec4(fragPos, t) * frequency);
+	float oy = snoise(vec4((fragPos + 2000.0), t) * frequency);
+	float oz = snoise(vec4((fragPos + 4000.0), t) * frequency);
+
+	// Store offsetVec since we want to use it twice.
+	vec3 offsetVec = vec3(ox, oy, oz) * 0.1;
+
+	// Get the distance vector from the center
+	vec3 nDistVec = normalize(fragPos + offsetVec);
+
+	// Get noise with normalized position to offset the original position
+	vec3 position = fragPos + noise(vec4(nDistVec, t), 5, 2.0, 0.7) * 0.1;
+	float dist = length(position+offsetVec)*3.0;
+	float brightness = (1.0/(dist*dist)-0.1)*0.7;
+	    
+	FragColor = vec4(result, 1.0)*brightness;
 }

@@ -24,6 +24,7 @@ public:
 	float radius;
 	float realRadius;
 	void setTransform(glm::vec3 pos, glm::vec3 rot);
+	glm::vec3 getTempColorShift();
 private:
 };
 

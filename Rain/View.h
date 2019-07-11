@@ -25,6 +25,8 @@ public:
 	void translatePosition(glm::vec3 translation);
 	void update(double delta, GLFWwindow* window);
 	void setPosition(glm::vec3 position);
+	glm::vec3 getRightVector();
+	glm::vec3 getUpVector();
 	
 private:
 	glm::vec3 position = glm::vec3(2.0f, 2.0f, 2.0f);
@@ -34,7 +36,7 @@ private:
 	float horizontalAngle = 3.14f;
 	float verticalAngle = -3.14f;
 	float initialFoV = 45.0f;
-	float speed = .6f;
+	float speed = .06f;
 	float mouseSpeed = 0.005f;
 	glm::mat4 proj = glm::mat4(1.0f);
 	glm::mat4 view = glm::mat4(1.0f);

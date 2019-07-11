@@ -75,3 +75,12 @@ void View::setPosition(glm::vec3 position)
 {
 	this->position = position;
 }
+
+glm::vec3 View::getRightVector()
+{
+	return glm::normalize(glm::cross(up, direction));
+}
+
+glm::vec3 View::getUpVector() {
+	return glm::normalize(glm::cross(direction, getRightVector()));
+}
